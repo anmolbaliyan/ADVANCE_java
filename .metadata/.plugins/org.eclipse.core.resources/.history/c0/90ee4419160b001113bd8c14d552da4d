@@ -1,0 +1,30 @@
+package com.rays.jdbc.preparedstatement;
+
+import java.util.Date;
+
+public class TestUserModel {
+	
+	public static void main(String[] args) throws Exception {
+		
+		UserBean bean = new UserBean();
+		
+		bean.setId(11);
+		bean.setFirstname("Kunal");
+		bean.setLastname("Khemu");
+		bean.setLogin("kunalkhemu123gmail.com");
+		bean.setPassword("kunal@123");
+		bean.setDob(new Date());
+		
+		UserModel model = new UserModel();
+		
+		int id = model.add(bean);
+		
+		System.out.println("record interted ad id: " + id);
+		
+	}
+	
+	
+	
+	
+
+}
