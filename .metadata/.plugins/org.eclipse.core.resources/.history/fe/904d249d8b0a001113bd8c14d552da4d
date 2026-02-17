@@ -1,5 +1,0 @@
-package com.rays.jdbc.transaction;
-
-public class Transaction {
-
-}
