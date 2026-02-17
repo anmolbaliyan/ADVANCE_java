@@ -36,7 +36,7 @@ public class UserModel {
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/advance_java", "root", "1234567890");
 
 		PreparedStatement pstmt = conn.prepareStatement(
-				"update st_user set firstname = ?, lastname = ?, login = ?, password = ?, dob = ? where id = ?");
+				"update st_user set firstname = ?, lastname = ?, login = ?, password = ?, dob = ?, where id = ?");
 
 		pstmt.setString(1, bean.getFirstname());
 		pstmt.setString(2, bean.getLastname());
@@ -67,7 +67,6 @@ public class UserModel {
 
 		conn.close();
 		pstmt.close();
-		
 		System.out.println(i + " row affected(record deleted)");
 
 	}

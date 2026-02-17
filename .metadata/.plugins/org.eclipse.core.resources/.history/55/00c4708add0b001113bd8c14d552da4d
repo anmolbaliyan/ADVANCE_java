@@ -6,9 +6,9 @@ public class TestUserModel {
 
 	public static void main(String[] args) throws Exception {
 
-		//testAdd();
+		testAdd();
 
-		testupdate();
+		//testupdate();
 
 		//testdelete();
 
@@ -17,7 +17,7 @@ public class TestUserModel {
 	private static void testdelete() throws Exception {
 		UserBean bean = new UserBean();
 
-		bean.setId(14);
+		bean.setId(3);
 
 		UserModel model = new UserModel();
 
@@ -34,7 +34,7 @@ public class TestUserModel {
 		bean.setLogin("karan12");
 		bean.setPassword("km@123");
 		bean.setDob(new Date());
-		bean.setId(11);
+		bean.setId(14);
 
 		UserModel model = new UserModel();
 

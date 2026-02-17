@@ -10,14 +10,16 @@ public class TestUserModel {
 
 		testupdate();
 
-		//testdelete();
+		testdelete();
 
 	}
 
 	private static void testdelete() throws Exception {
 		UserBean bean = new UserBean();
 
-		bean.setId(14);
+		bean.setId(3);
+
+		bean.setDob(new Date());
 
 		UserModel model = new UserModel();
 
@@ -28,13 +30,12 @@ public class TestUserModel {
 	private static void testupdate() throws Exception {
 		UserBean bean = new UserBean();
 
-		
+		bean.setId(14);
 		bean.setFirstname("karan");
 		bean.setLastname("Mehu");
 		bean.setLogin("karan12");
 		bean.setPassword("km@123");
 		bean.setDob(new Date());
-		bean.setId(11);
 
 		UserModel model = new UserModel();
 
@@ -47,11 +48,11 @@ public class TestUserModel {
 
 		UserBean bean = new UserBean();
 
-		bean.setId(3);
-		bean.setFirstname("AAdesh");
-		bean.setLastname("Ahuja");
-		bean.setLogin("adesh12");
-		bean.setPassword("adi@123");
+		bean.setId(14);
+		bean.setFirstname("luckey");
+		bean.setLastname("ji");
+		bean.setLogin("luckey12");
+		bean.setPassword("luckey@123");
 		bean.setDob(new Date());
 
 		UserModel model = new UserModel();

@@ -8,9 +8,9 @@ public class TestUserModel {
 
 		//testAdd();
 
-		testupdate();
+		//testupdate();
 
-		//testdelete();
+		testdelete();
 
 	}
 
@@ -34,7 +34,7 @@ public class TestUserModel {
 		bean.setLogin("karan12");
 		bean.setPassword("km@123");
 		bean.setDob(new Date());
-		bean.setId(11);
+		bean.setId(12);
 
 		UserModel model = new UserModel();
 
