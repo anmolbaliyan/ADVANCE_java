@@ -8,7 +8,7 @@ public class TestUserModel {
 
 		//testAdd();
 
-		testupdate();
+		//testupdate();
 
 		//testdelete();
 
@@ -39,6 +39,7 @@ public class TestUserModel {
 		UserModel model = new UserModel();
 
 		model.update(bean);
+		//update code
 		
 
 	}
