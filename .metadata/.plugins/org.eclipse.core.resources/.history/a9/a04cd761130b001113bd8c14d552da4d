@@ -1,0 +1,15 @@
+package com.rays.jdbc.preparedstatement;
+
+import java.util.Date;
+
+public class TestUserModel {
+	
+	private int id;
+	private String firstname;
+	private String Lastname;
+	private String login;
+	private String password;
+	private Date dob;
+	
+
+}

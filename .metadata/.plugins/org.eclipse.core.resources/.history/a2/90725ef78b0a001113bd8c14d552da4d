@@ -1,0 +1,48 @@
+package com.rays.jdbc.transaction;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class Transaction {
+	
+	public static void main(String[] args) throws ClassNotFoundException, SQLException{
+		
+		Connection conn = null;
+		
+		try {
+			
+			Class.forName("com.sql.cj.jdbc.Driver");
+			
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/advance_java", "root", "1234567890");
+			
+			conn.setAutoCommit(false);
+			
+			Statement stmt = conn.createStatement();
+			
+			int i = stmt.executeUpdate(
+					"insert into st_user values(11, 'Suresh', 'Yadav', 'suresh@gmail.com', 'suresh123', '2001-01-01')");
+
+			/*i = stmt.executeUpdate(
+					"insert into st_user values(12, 'Suresh', 'Yadav', 'suresh@gmail.com', 'sur '2001-01-01')");
+
+			i = stmt.executeUpdate(
+					"insert into st_user values(13, 'Suresh', 'Yadav', 'suresh@gmail.com', 'suresh123', '2001-01-0)");*/
+
+			conn.commit();
+			System.out.println("transaction coplited:(records saved)");
+			
+			conn.close();
+			stmt.close();
+			
+		}catch (Exception e){
+			
+			conn.rollback();
+			e.printStackTrace();
+			
+		}
+		
+	}
+
+}
