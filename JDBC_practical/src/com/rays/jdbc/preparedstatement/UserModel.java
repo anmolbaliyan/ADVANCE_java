@@ -1,12 +1,23 @@
 package com.rays.jdbc.preparedstatement;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.rays.jdbc.exception.DuplicateRecordException;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
 public class UserModel {
 
 	public int add(UserBean bean) throws Exception {
+		
+		UserBean existsbean = findByLogin(bean.getLogin());
+		if (existsbean != null) {
+			throw new DuplicateRecordException("email id already exists");
+		}
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -71,5 +82,119 @@ public class UserModel {
 		System.out.println(i + " row affected(record deleted)");
 
 	}
+	
+	public UserBean findByLogin(String login) throws Exception {
+
+		Class.forName("com.mysql.cj.jdbc.Driver");
+
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/advance_java", "root", "1234567890");
+
+		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where login = ?");
+
+		pstmt.setString(1, login);
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		UserBean bean = null ;
+
+		while (rs.next()) {
+			bean = new UserBean();
+			bean.setId(rs.getInt(1));
+			bean.setFirstname(rs.getString(2));
+			bean.setLastname(rs.getString(3));
+			bean.setLogin(rs.getString(4));
+			bean.setPassword(rs.getString(5));
+			bean.setDob(rs.getDate(6));
+		}
+		
+		return bean;
+		
+	}
+	
+	public UserBean authenticate(String login, String password) throws Exception {
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/advance_java", "root", "1234567890");
+
+		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where login = ? and password = ?");
+
+		pstmt.setString(1, login);
+		pstmt.setString(2, password);
+
+		ResultSet rs = pstmt.executeQuery();
+
+		UserBean bean = null;
+
+		while (rs.next()) {
+			bean = new UserBean();
+			bean.setId(rs.getInt(1));
+			bean.setFirstname(rs.getString(2));
+			bean.setLastname(rs.getString(3));
+			bean.setLogin(rs.getString(4));
+			bean.setPassword(rs.getString(5));
+			bean.setDob(rs.getDate(6));
+		}
+
+		return bean;
+
+	}
+	
+	public UserBean findByPk(int id) throws Exception {
+
+		Class.forName("com.mysql.cj.jdbc.Driver");
+
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/advance_java", "root", "1234567890");
+
+		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where id = ?");
+
+		pstmt.setInt(1, id);
+
+		ResultSet rs = pstmt.executeQuery();
+
+		UserBean bean = null;
+
+		while (rs.next()) {
+			bean = new UserBean();
+			bean.setId(rs.getInt(1));
+			bean.setFirstname(rs.getString(2));
+			bean.setLastname(rs.getString(3));
+			bean.setLogin(rs.getString(4));
+			bean.setPassword(rs.getString(5));
+			bean.setDob(rs.getDate(6));
+		}
+
+		return bean;
+
+	}
+	
+	public List<UserBean> search(UserBean bean) throws Exception {
+
+		Class.forName("com.mysql.cj.jdbc.Driver");
+
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/advance_java", "root", "1234567890");
+
+		PreparedStatement pstmt = conn.prepareStatement("select * from st_user");
+
+		ResultSet rs = pstmt.executeQuery();
+
+		List<UserBean> list = new ArrayList<UserBean>();
+
+		while (rs.next()) {
+			bean = new UserBean();
+			bean.setId(rs.getInt(1));
+			bean.setFirstname(rs.getString(2));
+			bean.setLastname(rs.getString(3));
+			bean.setLogin(rs.getString(4));
+			bean.setPassword(rs.getString(5));
+			bean.setDob(rs.getDate(6));
+			list.add(bean);
+		}
+
+		return list;
+
+	}
+
+
 
 }
