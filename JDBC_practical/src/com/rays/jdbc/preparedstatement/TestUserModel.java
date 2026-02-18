@@ -6,11 +6,11 @@ public class TestUserModel {
 
 	public static void main(String[] args) throws Exception {
 
-		//testAdd();
+		testAdd();
 
-		//testupdate();
+		testupdate();
 
-		//testdelete();
+		testdelete();
 
 	}
 
