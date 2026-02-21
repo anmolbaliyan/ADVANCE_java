@@ -7,7 +7,7 @@ public class TestMarksheetBean {
 
 	public static void main(String[] args) throws Exception {
 
-		// testdelete();
+		 testdelete();
 
 		// testupdate();
 
@@ -15,7 +15,7 @@ public class TestMarksheetBean {
 
 		//testFindByPk();
 		
-		testsearch();
+		//testsearch();
 	}
 
 	private static void testsearch() throws Exception {
@@ -88,7 +88,7 @@ public class TestMarksheetBean {
 	private static void testdelete() throws Exception {
 		MarksheetBean bean = new MarksheetBean();
 
-		bean.setId(2);
+		bean.setId(11);
 
 		MarksheetModel model = new MarksheetModel();
 		model.delete(bean);
