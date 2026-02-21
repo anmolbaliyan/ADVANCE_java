@@ -22,7 +22,7 @@ public class TestMarksheetBean {
 		MarksheetModel model = new MarksheetModel();
 		MarksheetBean bean = new MarksheetBean();
 		
-		bean.setName("R");
+		bean.setName("K");
 
 		List<MarksheetBean> list = model.search(bean);
 
