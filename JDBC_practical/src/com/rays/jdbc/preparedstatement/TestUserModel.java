@@ -25,6 +25,8 @@ public class TestUserModel {
 	private static void testSearch() throws Exception {
 		UserModel model = new UserModel();
 		UserBean bean = new UserBean();
+		
+		bean.setFirstname("A");
 
 		List<UserBean> list = model.search(bean);
 

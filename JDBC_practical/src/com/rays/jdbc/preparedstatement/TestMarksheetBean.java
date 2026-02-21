@@ -1,23 +1,67 @@
 package com.rays.jdbc.preparedstatement;
 
+import java.util.Iterator;
+import java.util.List;
+
 public class TestMarksheetBean {
 
 	public static void main(String[] args) throws Exception {
 
-		testdelete();
+		// testdelete();
 
-		testupdate();
+		// testupdate();
 
-		testadd();
+		// testadd();
+
+		//testFindByPk();
+		
+		testsearch();
+	}
+
+	private static void testsearch() throws Exception {
+		MarksheetModel model = new MarksheetModel();
+		MarksheetBean bean = new MarksheetBean();
+		
+		bean.setName("R");
+
+		List<MarksheetBean> list = model.search(bean);
+
+		Iterator<MarksheetBean> it = list.iterator();
+
+		while (it.hasNext()) {
+			bean = it.next();
+			System.out.println(bean.getId());
+			System.out.println(bean.getRollNo());
+			System.out.println(bean.getName());
+			System.out.println(bean.getPhy());
+			System.out.println(bean.getChm());
+			System.out.println(bean.getMaths());
+		}
+		
+	}
+
+	private static void testFindByPk() throws Exception {
+		MarksheetModel model = new MarksheetModel();
+		MarksheetBean bean = new MarksheetBean();
+
+		bean = model.findByPk(3);
+
+		if (bean != null) {
+			System.out.println(bean.getRollNo());
+			System.out.println(bean.getName());
+		} else {
+			System.out.println("user not found");
+		}
+
 	}
 
 	private static void testadd() throws Exception {
 		MarksheetBean bean = new MarksheetBean();
 
-		bean.setId(11);
-		bean.setRollNo(111);
-		bean.setName("Ronak");
-		bean.setPhy(67);
+		bean.setId(2);
+		bean.setRollNo(102);
+		bean.setName("Rakuten");
+		bean.setPhy(69);
 		bean.setChm(89);
 		bean.setMaths(98);
 
