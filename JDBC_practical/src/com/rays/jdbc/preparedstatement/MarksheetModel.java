@@ -100,7 +100,7 @@ public class MarksheetModel {
 			bean.setPhy(rs.getInt(4));
 			bean.setChm(rs.getInt(5));
 			bean.setMaths(rs.getInt(6));
-			
+
 		}
 
 		return bean;
@@ -119,9 +119,10 @@ public class MarksheetModel {
 			if (bean.getName() != null && bean.getName().length() > 0) {
 				sql.append(" and Name like '" + bean.getName() + "%'");
 			}
-			/*if (bean.getLastname() != null && bean.getLastname().length() > 0) {
-				sql.append(" and lastName like '" + bean.getLastname() + "%'");
-			}*/
+			/*
+			 * if (bean.getLastname() != null && bean.getLastname().length() > 0) {
+			 * sql.append(" and lastName like '" + bean.getLastname() + "%'"); }
+			 */
 		}
 
 		System.out.println("sql ===> " + sql.toString());
@@ -133,6 +134,35 @@ public class MarksheetModel {
 		ResultSet rs = pstmt.executeQuery();
 
 		List<MarksheetBean> list = new ArrayList<MarksheetBean>();
+
+		while (rs.next()) {
+			bean = new MarksheetBean();
+			bean.setId(rs.getInt(1));
+			bean.setRollNo(rs.getInt(2));
+			bean.setName(rs.getString(3));
+			bean.setPhy(rs.getInt(4));
+			bean.setChm(rs.getInt(5));
+			bean.setMaths(rs.getInt(6));
+			list.add(bean);
+		}
+
+		return list;
+
+	}
+
+	public List<MarksheetBean> getMeritList() throws Exception {
+
+		Class.forName("com.mysql.cj.jdbc.Driver");
+
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/advance_java", "root", "1234567890");
+
+		PreparedStatement pstmt = conn.prepareStatement(
+				"select *, (phy+chm+math) as total from marksheet order by total desc limit 0, 5");
+
+		ResultSet rs = pstmt.executeQuery();
+
+		List<MarksheetBean> list = new ArrayList<MarksheetBean>();
+		MarksheetBean bean = null;
 
 		while (rs.next()) {
 			bean = new MarksheetBean();
